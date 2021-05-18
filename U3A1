@@ -1,0 +1,209 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: CalculatorApp(),
+  ));
+}
+
+class CalculatorApp extends StatefulWidget {
+  const CalculatorApp ({Key key})
+ : super (key: key);  
+  @override
+  CalculatorAppState createState() => CalculatorAppState();
+}
+
+class CalculatorAppState extends State<CalculatorApp> {
+  double operand1 = 0.0;
+  double operand2 = 0.0;
+  String operation;
+  String calculation = "0";
+
+  void onPressOfButton(String text) { 
+  setState(() => calculation += text); 
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Card(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+                padding: EdgeInsets.all(16),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(calculation, style: TextStyle(fontSize: 30, color: Colors.red[900])),
+                )),
+            
+            // Componente boton
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                 CalcButton(                  
+                    buttonText: "7",
+                    textColor: Colors.white,
+                    buttonColor: Colors.red,
+                    callback: (){
+                    onPressOfButton ("7");
+                  } ),
+            CalcButton(                  
+                    buttonText: "8",
+                    textColor: Colors.white,
+                    buttonColor: Colors.red,
+                    callback: (){
+                    onPressOfButton ("8");
+                  } ),      
+            CalcButton(                  
+                    buttonText: "9",
+                    textColor: Colors.white,
+                    buttonColor: Colors.red,
+                    callback: (){
+                    onPressOfButton ("9");
+                  } ),     
+            CalcButton(                  
+                    buttonText: "%",
+                    textColor: Colors.white,
+                    buttonColor: Colors.black,
+                    callback: (){
+                    onPressOfButton ("%");
+                  } ),       
+
+                ]),
+            
+              // Componente boton
+             Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+            CalcButton(                  
+                    buttonText: "4",
+                    textColor: Colors.white,
+                    buttonColor: Colors.red,
+                    callback: (){
+                    onPressOfButton ("4");
+                  } ),
+            CalcButton(                  
+                    buttonText: "5",
+                    textColor: Colors.white,
+                    buttonColor: Colors.red,
+                    callback: (){
+                    onPressOfButton ("5");
+                  } ),      
+            CalcButton(                  
+                    buttonText: "6",
+                    textColor: Colors.white,
+                    buttonColor: Colors.red,
+                    callback: (){
+                    onPressOfButton ("6");
+                  } ),     
+            CalcButton(                  
+                    buttonText: "+",
+                    textColor: Colors.white,
+                    buttonColor: Colors.black,
+                    callback: (){
+                    onPressOfButton ("+");
+                  } ),      
+                ]),
+             // Componente boton
+             Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+            CalcButton(                  
+                    buttonText: "1",
+                    textColor: Colors.white,
+                    buttonColor: Colors.red,
+                    callback: (){
+                    onPressOfButton ("1");
+                  } ),
+            CalcButton(                  
+                    buttonText: "2",
+                    textColor: Colors.white,
+                    buttonColor: Colors.red,
+                    callback: (){
+                    onPressOfButton ("2");
+                  } ),      
+            CalcButton(                  
+                    buttonText: "3",
+                    textColor: Colors.white,
+                    buttonColor: Colors.red,
+                    callback: (){
+                    onPressOfButton ("3");
+                  } ),     
+            CalcButton(                  
+                    buttonText: "-",
+                    textColor: Colors.white,
+                    buttonColor: Colors.black,
+                    callback: (){
+                    onPressOfButton ("-");
+                  } ),            
+                  
+                ]),
+              // Componente boton
+             Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  //Componente boton
+            CalcButton(                  
+                    buttonText: "0",
+                    textColor: Colors.white,
+                    buttonColor: Colors.red,
+                    callback: (){
+                    onPressOfButton ("0");
+                  } ),
+            CalcButton(                  
+                    buttonText: "=",
+                    textColor: Colors.white,
+                    buttonColor: Colors.red,
+                    callback: (){
+                    onPressOfButton ("=");
+                  } ),      
+            CalcButton(                  
+                    buttonText: "C",
+                    textColor: Colors.white,
+                    buttonColor: Colors.red,
+                    callback: (){
+                    onPressOfButton ("C");
+                  } ),     
+            CalcButton(                  
+                    buttonText: "*",
+                    textColor: Colors.white,
+                    buttonColor: Colors.black,
+                    callback: (){
+                    onPressOfButton ("*");
+                  } ),             
+
+                ]),
+            
+          ],
+        ),
+      ),
+    );
+  }
+}
+//Clase CalcButton 
+class CalcButton extends StatelessWidget {
+  final Function callback;
+  final String buttonText;
+  final Color textColor;
+  final Color buttonColor;
+  
+//Clase CalcButton
+CalcButton ( {this.buttonText, this.textColor, this.buttonColor, this.callback});
+
+
+  @override
+Widget build (BuildContext context){
+  return
+    Container(
+      padding: EdgeInsets.all(2.0),
+      child: RaisedButton(
+      child: Text (
+        buttonText, // Parámetro text
+        style: TextStyle(color: textColor,),
+      ),
+      color: buttonColor,
+        onPressed: callback, // Parámetro callback
+      ));
+  }
+}
